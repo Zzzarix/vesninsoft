@@ -1,0 +1,20 @@
+version: "3"
+
+services:
+  psql:
+    image: postgres:15
+    container_name: "psql"
+    environment:
+      POSTGRES_DB: "vesninDb"
+      POSTGRES_USER: "vesninpg"
+      POSTGRES_PASSWORD: "7ZQrXgEgJC"
+    volumes:
+      - ./data:/docker-entrypoint-initdb.d
+    ports:
+      - "5432:5432"
+  
+  service:
+    build: ./service
+    container_name: "service"
+    depends_on:
+      - "psql"
