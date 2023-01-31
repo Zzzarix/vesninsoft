@@ -7,7 +7,7 @@ from .forms import *
 def account(request: HttpRequest):
     if not request.user.is_authenticated:
         return HttpResponseRedirect('/account/login')
-    return render(request, 'account/account.html', {'user': request.user})
+    return render(request, 'account.html', {'user': request.user})
 
 def login(request: HttpRequest):
     if request.user.is_authenticated:
@@ -22,7 +22,7 @@ def login(request: HttpRequest):
             user = form.get_user()
             auth_user(request, user)
             return HttpResponseRedirect('/account')
-    return render(request, 'account/login.html', {'form': form})
+    return render(request, 'login.html', {'form': form})
 
 def registration(request: HttpRequest):
     form = RegistrationForm()
@@ -35,12 +35,12 @@ def registration(request: HttpRequest):
             user = form.save(True)
             auth_user(request, user)
             return HttpResponseRedirect('/account')
-    return render(request, 'account/registration.html', {'form': form})
+    return render(request, 'registration.html', {'form': form})
 
 def logout(request: HttpRequest):
     auth_logout(request)
     print(request.user)
-    return render(request, 'account/logout.html')
+    return render(request, 'logout.html')
 
 def payslips(request: HttpRequest):
-    return render(request, 'account/payslips.html')
+    return render(request, 'payslips.html')

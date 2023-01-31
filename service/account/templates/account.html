@@ -1,0 +1,17 @@
+{% extends 'menu_abs.html' %}
+{% load static %}
+{% block head %}
+<link rel="stylesheet" type="text/css" href="{% static 'styles/account.css' %}">
+<title>Личный кабинет</title>
+{% endblock head %}
+{% block content %}
+Ваши данные:<br>
+Имя: {{ user.first_name }}<br>
+Фамилия: {{ user.last_name }}<br>
+Отчество: {{ user.patronymic }}<br>
+Телефон: {{ user.phone }}<br>
+СНИЛС: {{ user.snils }}<br>
+<div>
+    <a href="/account/logout">Выйти</a>
+</div>
+{% endblock content %}

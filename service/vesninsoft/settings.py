@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-*epa(o858e=)_yz4x^n8@j+l2ey0%02p=hhg=fzn-f(fx=we5u
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['localhost', '77.82.179.128', '127.0.0.1']
+ALLOWED_HOSTS = ['localhost', '77.82.98.147', '127.0.0.1', '192.168.99.100']
 
 
 # Application definition
@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'account',
+    'home',
 ]
 
 MIDDLEWARE = [
@@ -133,7 +134,13 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
-STATIC_URL = f'{Path(__file__).parent.parent}/static/'
+STATIC_URL = f'/static/'
+
+STATIC_ROOT = f'/com/vesninsoft/static/'
+
+STATIC_FILES_DIRS = [
+    '/static/'
+]
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
@@ -142,4 +149,4 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 AUTH_USER_MODEL = 'account.User'
 
-LOGIN_REDIRECT_URL = '/me'
+LOGIN_REDIRECT_URL = '/account/'

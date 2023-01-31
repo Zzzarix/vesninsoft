@@ -4,20 +4,19 @@ services:
 
   backend:
     build: ./service
-    command: python manage.py runserver 0.0.0.0:8000
+    command: gunicorn vesninsoft.wsgi:application --bind 0.0.0.0:8000 --workers 3
     container_name: "backend"
+    network_mode: "host"
     ports:
       - "8000:8000"
-    depends_on:
-      - "psql"
 
-  psql:
-    restart: always
-    image: postgres:15
-    container_name: "psql"
-    environment:
-      POSTGRES_DB: "vesninDb"
-      POSTGRES_USER: "vesninpg"
-      POSTGRES_PASSWORD: "7ZQrXgEgJC"
-    ports:
-      - "5432:5432"
+  # psql:
+  #   restart: always
+  #   image: postgres:15
+  #   container_name: "psql"
+  #   environment:
+  #     POSTGRES_DB: "vesninDb"
+  #     POSTGRES_USER: "vesninpg"
+  #     POSTGRES_PASSWORD: "7ZQrXgEgJC"
+  #   ports:
+  #     - "5432:5432"

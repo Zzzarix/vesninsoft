@@ -1,0 +1,95 @@
+body {
+    font-family: 'Inter';
+
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    overflow: auto;
+
+    margin: 0;
+    padding: 0;
+
+    background-color: aliceblue;
+
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+a, a:link {
+    text-decoration: none;
+    color: currentColor;
+}
+
+a:visited {
+    outline: none;
+    text-decoration: none;
+    color: currentColor;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+.wrapper {
+    width: 100%;
+    height: 100%;
+
+    padding-top: 100px;
+    padding-bottom: 230px;
+}
+
+.top-bar {
+    position: fixed;
+    left: 0;
+    top: 0;
+
+    background-color: #8DD6FF;
+
+    width: 100%;
+    height: 75px;
+}
+
+.profile-button {
+    position: absolute;
+    width: 154px;
+    height: 42px;
+    right: 151px;
+    top: 12px;
+
+    background: #FFFFFF;
+    border-radius: 15px;
+
+    text-align: center;
+    padding-top: 9px;
+
+    font-size: 24px;
+}
+
+.logout-button {
+    position: absolute;
+    width: 116px;
+    height: 42px;
+    right: 10px;
+    top: 12px;
+
+    background: #FFFFFF;
+    border-radius: 15px;
+
+    text-align: center;
+    padding-top: 9px;
+
+    font-size: 24px;
+}
+
+.basement {
+    width: 100%;
+    height: 200px;
+
+    position: absolute;
+	left: 0;
+	bottom: 0;
+
+    background-color: #207DB0;
+}

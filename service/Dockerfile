@@ -1,5 +1,5 @@
-# FROM python:3
-FROM 9f4d442f66f7
+FROM python:3
+# FROM 9f4d442f66f7
 ENV PYTHONBUFFERED 1
 COPY . /app/
 WORKDIR /app
