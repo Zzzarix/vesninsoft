@@ -17,6 +17,10 @@ class Company(models.Model):
 
 
 class User(AbstractUser):
+    USERNAME_FIELD = 'phone'
+
+    username = None
+
     phone = models.CharField('Телефон', max_length=12, unique=True, null=True)
     password = models.CharField('Пароль', max_length=128, null=False)
     first_name = models.CharField('Имя', max_length=50, null=True)
@@ -25,8 +29,6 @@ class User(AbstractUser):
     snils = models.CharField('СНИЛС', unique=True, null=False, max_length=11)
 
     is_corporative = models.BooleanField('Корпоративный пользователь', default=False)
-
-    USERNAME_FIELD = 'phone'
 
     def __str__(self) -> str:
         if self.is_corporative:
