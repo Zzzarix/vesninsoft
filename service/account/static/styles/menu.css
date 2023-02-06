@@ -44,6 +44,7 @@ a:hover {
     position: fixed;
     left: 0;
     top: 0;
+    z-index: 1000;
 
     background-color: #8DD6FF;
 
@@ -51,11 +52,27 @@ a:hover {
     height: 75px;
 }
 
+.payslips {
+    position: absolute;
+    width: auto;
+    height: 42px;
+    left: 10px;
+    top: 12px;
+
+    background: #FFFFFF;
+    border-radius: 15px;
+
+    text-align: center;
+    padding-top: 9px;
+
+    font-size: 24px;
+}
+
 .profile-button {
     position: absolute;
-    width: 154px;
+    width: auto;
     height: 42px;
-    right: 151px;
+    right: 100px;
     top: 12px;
 
     background: #FFFFFF;
@@ -69,7 +86,7 @@ a:hover {
 
 .logout-button {
     position: absolute;
-    width: 116px;
+    width: auto;
     height: 42px;
     right: 10px;
     top: 12px;

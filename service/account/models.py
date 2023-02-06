@@ -20,27 +20,28 @@ class User(AbstractUser):
     USERNAME_FIELD = 'phone'
 
     username = None
+    email = None
 
-    phone = models.CharField('Телефон', max_length=12, unique=True, null=True)
+    phone = models.CharField('Телефон', max_length=12, unique=True, null=False)
     password = models.CharField('Пароль', max_length=128, null=False)
     first_name = models.CharField('Имя', max_length=50, null=True)
     patronymic = models.CharField('Отчество', max_length=50, null=True)
     last_name = models.CharField('Фамилия', max_length=50, null=True)
-    snils = models.CharField('СНИЛС', unique=True, null=False, max_length=11)
+    snils = models.CharField('СНИЛС', null=True, max_length=11)
+
+    # company = models.ForeignKey(Company, related_name='Компания', max_length=50, on_delete=models.CASCADE, null=True)
 
     is_corporative = models.BooleanField('Корпоративный пользователь', default=False)
 
     def __str__(self) -> str:
         if self.is_corporative:
-            return f"<CorporativeUser {self.corporative_username} {self.company.name}>"
+            return f"<CorporativeUser {self.phone} {self.company.name}>"
         return f"<User {self.phone} {self.first_name} {self.patronymic} {self.last_name}>"
-
+    
     class Meta:
         ordering = ['first_name', 'last_name']
         verbose_name = 'Пользователь'
         verbose_name_plural = 'Пользователи'
-
-User.check_password
 
 
 # class Document(models.Model):

@@ -5,13 +5,25 @@
 <title>Личный кабинет</title>
 {% endblock head %}
 {% block content %}
-Ваши данные:<br>
-Имя: {{ user.first_name }}<br>
-Фамилия: {{ user.last_name }}<br>
-Отчество: {{ user.patronymic }}<br>
-Телефон: {{ user.phone }}<br>
-СНИЛС: {{ user.snils }}<br>
-<div>
-    <a href="/account/logout">Выйти</a>
+<div class="profile">
+    <div class="profile-orgs-list-wrapper">
+        <p class="profile-orgs-list-header">Компании</p>
+        <div class="profile-orgs-list">
+            Пока нет ни одной Компании
+        </div>
+    </div>
+    <div class="account-data-wrapper">
+        <p class="account-data-header">Ваши данные</p>
+        <div class="account-data">
+            Ваши данные:<br>
+            Имя: {{ user.first_name }}<br>
+            Фамилия: {{ user.last_name }}<br>
+            Отчество: {{ user.patronymic }}<br>
+            Телефон: {{ user.phone }}<br>
+            {% if user.snils %}
+            СНИЛС: {{ user.snils }}<br>
+            {% endif %}
+        </div>
+    </div>
 </div>
 {% endblock content %}

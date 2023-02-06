@@ -1,3 +1,79 @@
 html, body {
     padding: 0;
 }
+
+.profile {
+    height: 100%;
+    width: 100%;
+}
+
+.profile-orgs-list-wrapper {
+    position: absolute;
+    width: 392px;
+    height: 584px;
+    left: 82px;
+    top: 138px;
+
+    background: #FFFFFF;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.4);
+    border-radius: 27px;
+}
+
+.profile-orgs-list-header {
+    width: 120px;
+    height: 51px;
+    margin-left: 10px;
+
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 24px;
+    line-height: 29px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+
+    color: #000000;
+}
+
+.profile-orgs-list {
+    width: auto;
+    height: auto;
+
+    margin-top: 25px;
+    margin-left: 10px;
+}
+
+.account-data-wrapper {
+    position: absolute;
+    width: 711px;
+    height: 345px;
+    left: 661px;
+    top: 138px;
+    
+    background: #FFFFFF;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.4);
+    border-radius: 27px;
+}
+
+.account-data-header {
+    width: 160px;
+    margin-left: 10px;
+
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 24px;
+    line-height: 29px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+}
+
+.account-data {
+    width: auto;
+    height: auto;
+
+    margin-top: 25px;
+    margin-left: 10px;
+}

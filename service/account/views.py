@@ -16,12 +16,12 @@ def login(request: HttpRequest):
     if request.method == 'POST':
         data = request.POST.copy()
         if not data['username'].startswith('+7'):
-            data['username'] = data['username'].replace('8', '+7', 1)
+            data['username'] = data['username'].replace('8', '+7', 1).replace(' ', '').replace('-', '')[:12]
         form = LoginForm(data=data)
         if form.is_valid():
             user = form.get_user()
             auth_user(request, user)
-            return HttpResponseRedirect('/account')
+            return HttpResponseRedirect('/account') 
     return render(request, 'login.html', {'form': form})
 
 def registration(request: HttpRequest):
@@ -29,10 +29,11 @@ def registration(request: HttpRequest):
     if request.method == 'POST':
         data = request.POST.copy()
         if not data['phone'].startswith('+7'):
-            data['phone'] = data['phone'].replace('8', '+7', 1)
+            data['phone'] = data['phone'].replace('8', '+7', 1).replace(' ', '').replace('-', '')[:12]
         form = RegistrationForm(data=data)
+        form.as_p()
         if form.is_valid():
-            user = form.save(True)
+            user = User.objects.create(**form.cleaned_data)
             auth_user(request, user)
             return HttpResponseRedirect('/account')
     return render(request, 'registration.html', {'form': form})
