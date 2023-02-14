@@ -5,7 +5,7 @@ from django.contrib.auth.models import AbstractUser
 class Company(models.Model):
     name = models.CharField('Название', null=False, max_length=500)
     inn = models.BigIntegerField('ИНН', primary_key=True)
-    kpp = models.BigIntegerField('КПП')
+    kpp = models.BigIntegerField('КПП', null=True)
 
     def __str__(self) -> str:
         return f"<Company {self.name} {self.inn}>"
@@ -57,10 +57,9 @@ class User(AbstractUser):
 
 class PayslipRegistry(models.Model):
     id = models.BigAutoField('Идентификатор', primary_key=True)
-    company = models.ForeignKey(Company, related_name='Организация', max_length=50, on_delete=models.CASCADE)
+    company = models.ForeignKey(Company, related_name='Организация', max_length=500, on_delete=models.CASCADE)
     month = models.IntegerField('Месяц начисления')
     year = models.IntegerField('Год начисления')
-    inn = models.BigIntegerField('ИНН')
 
     def __str__(self) -> str:
         return f"<PayslipRegistry {self.company} {self.month}.{self.year}>"
@@ -77,7 +76,8 @@ class PayslipSheet(models.Model):
     number = models.IntegerField('Номер листа')
 
     full_name = models.CharField('ФИО', max_length=120)
-    bank_number = models.CharField('Номер Лицевого Счета', max_length=20)
+    phone = models.CharField('Телефон', max_length=12, default=None)
+    snils = models.CharField('СНИЛС', max_length=11, default=None)
     subdivision = models.CharField('Подразделение', max_length=100)
     specialization = models.CharField('Должность', max_length=100)
 
@@ -106,7 +106,7 @@ class PayslipSheet(models.Model):
     # holds_tax_description = models.CharField(
     #     'Налог на доходы описание удержания', max_length=150)
 
-    # payments = models.DecimalField('Выплаты')
+    payments = models.JSONField('Выплаты', default=dict)
 
     # payments_salary = models.DecimalField('Перечисление зарплаты')
     # payments_salary_description = models.CharField(
@@ -116,13 +116,15 @@ class PayslipSheet(models.Model):
     info = models.JSONField('Справочная информация', default=dict)
 
     # info_days_worked = models.DecimalField('Отработано дней')
-    # info_hours_worked = models.DecimalField('Отработано часов')
+    #' info_hours_worked = models.DecimalField('Отработано часов')
     # info_salary = models.DecimalField('Размер оклада')
     # info_remainder = models.DecimalField('Остаток на начало')
-    # info_sum = models.DecimalField('Отработано дней')
 
     def __str__(self) -> str:
         return f"<PayslipSheet {self.registry.id} {self.number}>"
+    
+    def as_p(self) -> str:
+        return ''
 
     class Meta:
         ordering = ['id', 'registry']

@@ -9,7 +9,15 @@
     <div class="profile-orgs-list-wrapper">
         <p class="profile-orgs-list-header">Компании</p>
         <div class="profile-orgs-list">
+            {% if companies %}
+                <ul>
+                    {% for company in companies %}
+                    <li><a href="/account/payslips/{{ company.inn }}">{{ company.name }}</a></li>
+                    {% endfor %}
+                </ul>
+            {% else %}
             Пока нет ни одной Компании
+            {% endif %}
         </div>
     </div>
     <div class="account-data-wrapper">

@@ -5,5 +5,67 @@
 <title>Платёжные листы</title>
 {% endblock head %}
 {% block content %}
-Здесь ваши платёжные листы
+<div class="data-field">
+    {% if companies %}
+        <h3>Выберите организацию</h3>
+        <ul>
+            {% for company in companies %}
+                <li><a href="/account/payslips/{{ company.inn }}">{{ company.name }}</a></li>
+            {% endfor %}
+        </ul>
+
+    {% elif registers %}
+        <h3>Выберите дату</h3>
+        <ul>
+            {% for registry in registers %}
+                <li><a href="/account/payslips/{{ company_inn }}/{{ registry.id }}">{{ registry.year }}/{{ registry.month }}</a></li>
+            {% endfor %}
+        </ul>
+
+    {% elif sheet %}
+        <h3>ФИО</h3> {{ sheet.full_name }}</br>
+        <h3>Телефон</h3> {{ sheet.phone }}</br>
+        <h3>СНИЛС</h3> {{ sheet.snils }}</br>
+        <h3>Подразделение</h3> {{ sheet.subdivision }}</br>
+        <h3>Должность</h3> {{ sheet.specialization }}</br>
+        <h3>Начисления</h3>
+            {% for key, value in sheet.accruals.items %}
+                {{ key }}
+                <ul>
+                    {% for k, v in value.items %}
+                        <li>{{ k }} {{ v }}</li>
+                    {% endfor %}
+                </ul>
+            {% endfor %}
+        <h3>Удержания</h3>
+            {% for key, value in sheet.holds.items %}
+                {{ key }}
+                <ul>
+                    {% for k, v in value.items %}
+                        <li>{{ k }} {{ v }}</li>
+                    {% endfor %}
+                </ul>
+            {% endfor %}
+        <h3>Выплаты</h3>
+            {% for key, value in sheet.payments.items %}
+                {{ key }}
+                <ul>
+                    {% for k, v in value.items %}
+                        <li>{{ k }} {{ v }}</li>
+                    {% endfor %}
+                </ul>
+            {% endfor %}
+        <h3>Справочная информация</h3>
+            {% for key, value in sheet.info.items %}
+                {{ key }}
+                <ul>
+                    {% for k, v in value.items %}
+                        <li>{{ k }} {{ v }}</li>
+                    {% endfor %}
+                </ul>
+            {% endfor %}
+    {% else %}
+        У вас ещё нет ни одной расчётки
+    {% endif %}
+</div>
 {% endblock content %}

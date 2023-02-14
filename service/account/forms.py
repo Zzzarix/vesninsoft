@@ -29,3 +29,4 @@ class RegistrationForm(forms.ModelForm):
 class LoginForm(AuthenticationForm):
     username = forms.TextInput(attrs={'title': 'Телефон', 'placeholder': '+79140000000', 'class': 'login_field input-text', 'required' : 'True'})
     password = forms.PasswordInput(attrs={'title': 'Пароль', 'placeholder': 'Пароль', 'class': 'password_field input-text', 'required' : 'True'})
+
