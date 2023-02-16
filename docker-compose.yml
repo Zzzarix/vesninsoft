@@ -4,11 +4,25 @@ services:
 
   backend:
     build: ./service
-    # command: gunicorn vesninsoft.wsgi:application --bind 0.0.0.0:8000 --workers 3
-    command: python manage.py runserver 0.0.0.0:56432
+    command: gunicorn vesninsoft.wsgi:application --bind 0.0.0.0:8000 --workers 3
     container_name: "backend"
+    volumes:
+      - static:/app/com/vesninsoft/static/
+    expose:
+      - "8000"
+
+    restart: always
+  
+  nginx:
+    build: ./nginx
+    volumes:
+      - static:/app/com/vesninsoft/static/
     ports:
-      - "56432:56432"
+      - "80:8000"
+    depends_on:
+      - backend
+
+    restart: always
 
   # psql:
   #   restart: always
@@ -20,3 +34,6 @@ services:
   #     POSTGRES_PASSWORD: "7ZQrXgEgJC"
   #   ports:
   #     - "5432:5432"
+
+volumes:
+  static:

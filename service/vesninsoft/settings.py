@@ -137,7 +137,7 @@ USE_TZ = True
 
 STATIC_URL = f'/static/'
 
-STATIC_ROOT = f'/com/vesninsoft/static/'
+STATIC_ROOT = f'/app/com/vesninsoft/static/'
 
 STATIC_FILES_DIRS = [
     '/static/'
