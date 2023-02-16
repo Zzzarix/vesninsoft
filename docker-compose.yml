@@ -19,7 +19,7 @@ services:
     volumes:
       - static:/app/com/vesninsoft/static/
     ports:
-      - "1337:80"
+      - "80:80"
     depends_on:
       - backend
 
