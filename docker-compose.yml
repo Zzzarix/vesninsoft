@@ -15,6 +15,7 @@ services:
   
   nginx:
     build: ./nginx
+    container_name: "nginx"
     volumes:
       - static:/app/com/vesninsoft/static/
     ports:
