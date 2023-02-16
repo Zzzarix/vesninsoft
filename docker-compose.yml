@@ -18,8 +18,8 @@ services:
     container_name: "nginx"
     volumes:
       - static:/app/com/vesninsoft/static/
-    expose:
-      - "80"
+    ports:
+      - "1337:80"
     depends_on:
       - backend
 
