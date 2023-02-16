@@ -4,4 +4,5 @@ ENV PYTHONBUFFERED 1
 COPY . /app/
 WORKDIR /app
 RUN pip install -r requirements.txt
+RUN python manage.py collectstatic
 # CMD ["python", "manage.py", "runserver"]
