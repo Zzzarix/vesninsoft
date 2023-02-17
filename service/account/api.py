@@ -9,7 +9,7 @@ import traceback
 class CreatePayslipsSerializer(serializers.Serializer):
     content = serializers.CharField(required=True, allow_blank=False)
 
-@api_view(["GET", "POST"])
+@api_view(["POST"])
 def apiCreatePayslips(request):
     data = request.POST.copy()
     content = data.get('content', None)
