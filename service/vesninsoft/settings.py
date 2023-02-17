@@ -85,7 +85,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'vesninDb',
         'USER': 'vesninpg',
-        'PASSWORD': 'Oa0fdJ8fiAFJew',
+        'PASSWORD': '7ZQrXgEgJC',
         'HOST': 'psql',
         'PORT': '5432',
         'TIMEOUT': 30
