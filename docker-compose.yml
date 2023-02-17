@@ -26,17 +26,20 @@ services:
 
     restart: always
 
-  # psql:
-  #   restart: always
-  #   image: postgres:15
-  #   container_name: "psql"
-  #   environment:
-  #     POSTGRES_DB: "vesninDb"
-  #     POSTGRES_USER: "vesninpg"
-  #     POSTGRES_PASSWORD: "7ZQrXgEgJC"
-  #   ports:
-  #     - "5432:5432"
+  psql:
+    restart: always
+    image: postgres:latest
+    container_name: "psql"
+    volumes:
+      - postgres:/var/lib/postgresql/data/
+    environment:
+      POSTGRES_DB: "vesninDb"
+      POSTGRES_USER: "vesninpg"
+      POSTGRES_PASSWORD: "7ZQrXgEgJC"
+    ports:
+      - "5432:5432"
 
 volumes:
   static:
   data:
+  postgres:
