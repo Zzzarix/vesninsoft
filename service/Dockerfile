@@ -5,5 +5,5 @@ COPY . /app/
 WORKDIR /app
 RUN pip install -r requirements.txt
 RUN python manage.py collectstatic
-RUN pyton manage.py makemigrations && pyton manage.py migrate
+RUN python manage.py makemigrations && python manage.py migrate
 # CMD ["python", "manage.py", "runserver"]
