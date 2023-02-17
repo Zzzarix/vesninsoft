@@ -40,22 +40,34 @@ services:
     environment:
       POSTGRES_DB: "vesninDb"
       POSTGRES_USER: "vesninpg"
-      POSTGRES_PASSWORD: "7ZQrXgEgJC"
+      POSTGRES_PASSWORD: "Oa0fdJ8fiAFJew"
     ports:
       - "5432:5432"
+    networks: 
+      - postgres
+    
   
-  adminer:
-    image: adminer:latest
-    restart: always
-    depends_on:
-      - psql
-    ports:
-      - "56123:8080"
+  pgadmin:
+    container_name: "pgadmin"
+    image: dpage/pgadmin4:latest
     environment:
-      POSTGRES_DB: "vesninDb"
-      POSTGRES_USER: "vesninpg"
-      POSTGRES_PASSWORD: "7ZQrXgEgJC"
+      PGADMIN_DEFAULT_EMAIL: "Kffb2qfvAwq@vesninsoft.ru"
+      PGADMIN_DEFAULT_PASSWORD: "JHa9fUJ8wqJfv"
+      PGADMIN_CONFIG_SERVER_MODE: "False"
+    volumes:
+      - pgadmin:/var/lib/pgadmin
+    ports:
+      - "50505:80"
+    restart: always
+    networks: 
+      - postgres
+  
 
 volumes:
   static:
   postgres:
+  pgadmin:
+
+networks:
+  postgres:
+    driver: bridge
