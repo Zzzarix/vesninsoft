@@ -43,8 +43,6 @@ services:
       POSTGRES_PASSWORD: "Oa0fdJ8fiAFJew"
     ports:
       - "5432:5432"
-    networks: 
-      - postgres
     
   
   pgadmin:
@@ -59,8 +57,6 @@ services:
     ports:
       - "50505:80"
     restart: always
-    networks: 
-      - postgres
   
 
 volumes:
@@ -68,6 +64,6 @@ volumes:
   postgres:
   pgadmin:
 
-networks:
-  postgres:
-    driver: bridge
+# networks:
+#   postgres:
+#     driver: bridge
