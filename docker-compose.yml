@@ -4,7 +4,11 @@ services:
 
   backend:
     build: ./service
-    command: gunicorn vesninsoft.wsgi:application --bind 0.0.0.0:8000 --workers 3
+    command: >
+      sh -c "python manage.py makemigrations &&
+             python manage.py migrate &&
+             gunicorn vesninsoft.wsgi:application --bind 0.0.0.0:8000 --workers 3"
+
     container_name: "backend"
     volumes:
       - static:/app/com/vesninsoft/static/
