@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.http import HttpRequest, HttpResponseRedirect, Http404, HttpResponseBadRequest, HttpResponseServerError, HttpResponse
+from django.http import HttpRequest, HttpResponseRedirect, HttpResponseBadRequest, HttpResponseServerError, HttpResponse, HttpResponseNotFound
 from django.contrib.auth import login as auth_user, logout as auth_logout
 from django.contrib.auth.hashers import make_password
 from .forms import *
@@ -66,7 +66,7 @@ def payslips(request: HttpRequest, inn: int = None, id: int = None):
 
 def apiCreatePayslips(request: HttpRequest):
     if request.method != 'POST':
-        return Http404()
+        return HttpResponseNotFound()
 
     data = request.POST.copy()
     content = data.get('content', None)
