@@ -8,7 +8,6 @@ services:
     container_name: "backend"
     volumes:
       - static:/app/com/vesninsoft/static/
-      - data:/app/
     expose:
       - "8000"
 
@@ -41,5 +40,4 @@ services:
 
 volumes:
   static:
-  data:
   postgres:
