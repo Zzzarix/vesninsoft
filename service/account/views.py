@@ -63,17 +63,3 @@ def payslips(request: HttpRequest, inn: int = None, id: int = None):
     else:
         companies = set([s.registry.company for s in PayslipSheet.objects.filter(phone=request.user.phone).all()])
         return render(request, 'payslips.html', {'companies': companies})
-
-def apiCreatePayslips(request: HttpRequest):
-    if request.method != 'POST':
-        return HttpResponseNotFound()
-
-    data = request.POST.copy()
-    content = data.get('content', None)
-    if not content:
-        return HttpResponseBadRequest()
-    try:
-        parse_payslip_registry(content)
-        return HttpResponse()
-    except Exception:
-        return HttpResponseServerError()

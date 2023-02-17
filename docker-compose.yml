@@ -43,6 +43,18 @@ services:
       POSTGRES_PASSWORD: "7ZQrXgEgJC"
     ports:
       - "5432:5432"
+  
+  adminer:
+    image: adminer:latest
+    restart: always
+    depends_on:
+      - psql
+    ports:
+      - "56123:8080"
+    environment:
+      POSTGRES_DB: "vesninDb"
+      POSTGRES_USER: "vesninpg"
+      POSTGRES_PASSWORD: "7ZQrXgEgJC"
 
 volumes:
   static:
