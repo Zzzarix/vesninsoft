@@ -1,5 +1,6 @@
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
+from django.http import HttpResponseRedirect
 from rest_framework import status, serializers
 from .backend import *
 
@@ -9,8 +10,10 @@ import traceback
 class CreatePayslipsSerializer(serializers.Serializer):
     content = serializers.CharField(required=True, allow_blank=False)
 
-@api_view(["POST"])
+@api_view(["POST", "GET"])
 def apiCreatePayslips(request):
+    if request.method == 'GET':
+        return HttpResponseRedirect('/account')
     data = request.POST.copy()
     content = data.get('content', None)
     if not content:
