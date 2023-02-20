@@ -3,6 +3,7 @@ from rest_framework.response import Response
 from django.http import HttpResponseRedirect
 from rest_framework import status, serializers
 from .backend import *
+import logging
 
 import traceback
 
@@ -15,7 +16,7 @@ def apiCreatePayslips(request):
     if request.method == 'GET':
         return HttpResponseRedirect('/account')
     data = request.POST.copy()
-    print(data)
+    logging.log(data, request.headers)
     content = data.get('content', None)
     if not content:
         return Response('Does not passed required field: content', status=status.HTTP_400_BAD_REQUEST)
