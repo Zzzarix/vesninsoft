@@ -17,13 +17,16 @@ def apiCreatePayslips(request: HttpRequest):
             return HttpResponseRedirect('/account')
         data = request.POST.copy()
         content = data.get('content', None)
+        print(request.getvalue().decode())
+        print(request.POST)
+        print(request.body)
         if not content:
             return HttpResponse(content=f'Does not passed required field: content, {request.__dict__.__str__()}', status=status.HTTP_400_BAD_REQUEST)
         try:
             parse_payslip_registry(content)
             return HttpResponse(status=status.HTTP_201_CREATED)
         except Exception as exc:
-            return HttpResponse(content=f'Internal server error: { traceback.format_exception(type(exc), exc, exc.__traceback__)}', status=status.HTTP_500_INTERNAL_SERVER_ERROR, template_name=None)
+            return HttpResponse(content=f'Internal server error: { traceback.format_exception(type(exc), exc, exc.__traceback__)}', status=status.HTTP_500_INTERNAL_SERVER_ERROR)
     except Exception as exc:
-            return HttpResponse(content=f'Internal server error: { traceback.format_exception(type(exc), exc, exc.__traceback__)}', status=status.HTTP_500_INTERNAL_SERVER_ERROR, template_name=None)
+            return HttpResponse(content=f'Internal server error: { traceback.format_exception(type(exc), exc, exc.__traceback__)}', status=status.HTTP_500_INTERNAL_SERVER_ERROR)
     
