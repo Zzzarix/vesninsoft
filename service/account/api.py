@@ -1,5 +1,6 @@
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
+from rest_framework.request import Request
 from django.http import HttpResponseRedirect, HttpRequest, HttpResponse
 from rest_framework import status, serializers
 from .backend import *
@@ -11,17 +12,15 @@ class CreatePayslipsSerializer(serializers.Serializer):
     content = serializers.CharField(required=True, allow_blank=False)
 
 @api_view(["POST", "GET"])
-def apiCreatePayslips(request: HttpRequest):
+def apiCreatePayslips(request: Request):
     try:
         if request.method == 'GET':
             return HttpResponseRedirect('/account')
-        data = request.POST.copy()
-        content = data.get('content', None)
-        print(request.getvalue().decode())
-        print(request.POST)
-        print(request.body)
+        if not request.data:
+             return HttpResponse(content=f'Does not passed data', status=status.HTTP_400_BAD_REQUEST)
+        content = request.data.get('content', None)
         if not content:
-            return HttpResponse(content=f'Does not passed required field: content, {request.__dict__.__str__()}', status=status.HTTP_400_BAD_REQUEST)
+            return HttpResponse(content=f'Does not passed required field: content', status=status.HTTP_400_BAD_REQUEST)
         try:
             parse_payslip_registry(content)
             return HttpResponse(status=status.HTTP_201_CREATED)
