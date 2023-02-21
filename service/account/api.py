@@ -20,7 +20,7 @@ def apiCreatePayslips(request: Request):
              return HttpResponse(content=f'Does not passed data', status=status.HTTP_400_BAD_REQUEST)
         content = request.data.get('content', None)
         if not content:
-            return HttpResponse(content=f'Does not passed required field: content', status=status.HTTP_400_BAD_REQUEST)
+            return HttpResponse(content=f'Does not passed required field: content, {request.data}, {request.POST}', status=status.HTTP_400_BAD_REQUEST)
         try:
             parse_payslip_registry(content)
             return HttpResponse(status=status.HTTP_201_CREATED)
