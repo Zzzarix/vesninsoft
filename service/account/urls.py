@@ -18,3 +18,4 @@ urlpatterns = [
     path('api/createPayslip', api.apiCreatePayslips, name='payslips-create'),
     path('api/createPayslip/', api.apiCreatePayslips, name='payslips-create'),
 ]
+ 
