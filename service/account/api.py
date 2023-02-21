@@ -16,9 +16,9 @@ def apiCreatePayslips(request: Request):
     try:
         if request.method == 'GET':
             return HttpResponseRedirect('/account')
-        if not request.POST:
+        if not request.data:
              return HttpResponse(content=f'Does not passed data', status=status.HTTP_400_BAD_REQUEST)
-        content = request.POST.get('content', None)
+        content = request.data.get('content', None)
         if not content:
             return HttpResponse(content=f'Does not passed required field: content', status=status.HTTP_400_BAD_REQUEST)
         try:
