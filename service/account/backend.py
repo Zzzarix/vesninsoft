@@ -5,9 +5,9 @@ PATH = r'D:\Downloads\xml_payslips.xml'
 
 def parse_payslip_registry(content: str | bytes):
 
-    ENCODING = 'windows-1251'  # 'utf-8'
+    ENCODING = 'utf-8'  # 'windows-1251'  if isinstance(content, bytes) else content
 
-    content = (content.decode(encoding=ENCODING) if isinstance(content, bytes) else content).replace('<?xml version="1.0" encoding="windows-1251" ?>\n', '')
+    content = content.decode(encoding=ENCODING).replace('<?xml version="1.0" encoding="windows-1251" ?>\n', '')
 
     data: minidom.Document = minidom.parseString(content)
 
