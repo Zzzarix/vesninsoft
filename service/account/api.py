@@ -25,6 +25,7 @@ def apiCreatePayslips(request: Request):
             parse_payslip_registry(content)
             return HttpResponse(status=status.HTTP_201_CREATED)
         except Exception as exc:
+            traceback.print_exception(type(exc), exc, exc.__traceback__)
             return HttpResponse(content=f'Internal server error: { traceback.format_exception(type(exc), exc, exc.__traceback__)}', status=status.HTTP_500_INTERNAL_SERVER_ERROR)
     except Exception as exc:
             return HttpResponse(content=f'Internal server error: { traceback.format_exception(type(exc), exc, exc.__traceback__)}', status=status.HTTP_500_INTERNAL_SERVER_ERROR)
