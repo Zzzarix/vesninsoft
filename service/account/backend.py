@@ -7,8 +7,6 @@ def parse_payslip_registry(content: str | bytes):
 
     ENCODING = 'utf-8'  # 'windows-1251'
 
-    content = content.replace('<?xml version="1.0" encoding="utf-8" ?>\n', '')
-
     data: minidom.Document = minidom.parseString(content)
 
     for _registry in data.getElementsByTagName('РеестрРасчетныхЛистов'):
