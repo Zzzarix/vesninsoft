@@ -1,8 +1,8 @@
 from rest_framework.decorators import api_view
-from rest_framework.response import Response
 from rest_framework.request import Request
-from django.http import HttpResponseRedirect, HttpRequest, HttpResponse
+from django.http import HttpResponseRedirect, HttpResponse
 from rest_framework import status, serializers
+from django.core.files.uploadedfile import InMemoryUploadedFile
 from .backend import *
 
 import traceback
@@ -18,11 +18,11 @@ def apiCreatePayslips(request: Request):
             return HttpResponseRedirect('/account')
         if not request.data:
              return HttpResponse(content=f'Does not passed data', status=status.HTTP_400_BAD_REQUEST)
-        content = request.data.get('content', None)
-        if not content:
-            return HttpResponse(content=f'Does not passed required field: content, {request.data}, {request.POST}', status=status.HTTP_400_BAD_REQUEST)
+        content_file: InMemoryUploadedFile = request.data.get('content', None)
+        if not content_file:
+            return HttpResponse(content=f'Does not passed required field: content', status=status.HTTP_400_BAD_REQUEST)
         try:
-            parse_payslip_registry(content)
+            parse_payslip_registry(content_file.read())
             return HttpResponse(status=status.HTTP_201_CREATED)
         except Exception as exc:
             traceback.print_exception(type(exc), exc, exc.__traceback__)
