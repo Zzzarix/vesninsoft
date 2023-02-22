@@ -68,4 +68,4 @@ def parse_payslip_registry(content: str | bytes):
                 payments = __parse_sheet(_sheet.getElementsByTagName('Выплаты')[0])
                 info = __parse_sheet(_sheet.getElementsByTagName('Справочно')[0])
 
-                PayslipSheet.objects.create(registry=registry, number=_sheet.getAttribute('Нпп'), full_name=full_name, phone=123456789122, snils=10293878911, subdivision=subdivision, specialization=specialization, accruals=accruals, holds=holds, payments=payments, info=info)
+                PayslipSheet.objects.create(registry=registry, number=_sheet.getAttribute('Нпп'), full_name=full_name, phone=phone, snils=snils, subdivision=subdivision, specialization=specialization, accruals=accruals, holds=holds, payments=payments, info=info)
