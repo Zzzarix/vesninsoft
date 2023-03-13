@@ -14,8 +14,5 @@ urlpatterns = [
     path('payslips/<int:inn>/', views.payslips, name='payslips_sheets'),
     # path('payslips/{int:inn}/{int:year}/{year:month}', views.payslips, name='payslips'),
     path('payslips/<int:inn>/<int:id>/', views.payslips, name='payslips_view'),
-
-    path('api/createPayslip', api.apiCreatePayslips, name='payslips-create'),
-    path('api/createPayslip/', api.apiCreatePayslips, name='payslips-create'),
 ]
  

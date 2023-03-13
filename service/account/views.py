@@ -3,7 +3,7 @@ from django.http import HttpRequest, HttpResponseRedirect, HttpResponseBadReques
 from django.contrib.auth import login as auth_user, logout as auth_logout
 from django.contrib.auth.hashers import make_password
 from .forms import *
-from .backend import *
+from ..api.backend import *
 
 # Create your views here.
 def account(request: HttpRequest):

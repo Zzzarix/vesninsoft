@@ -1,5 +1,7 @@
 from xml.dom import minidom
-from .models import PayslipRegistry, PayslipSheet, Company, User
+from account.models import PayslipRegistry, PayslipSheet, Company, User, CompanyAdmin
+from django.contrib.auth.hashers import make_password
+from enum import Enum
 
 PATH = r'D:\Downloads\xml_payslips.xml'
 
@@ -67,3 +69,36 @@ def parse_payslip_registry(content: str | bytes):
                 info = __parse_sheet(_sheet.getElementsByTagName('Справочно')[0])
 
                 PayslipSheet.objects.create(registry=registry, number=_sheet.getAttribute('Нпп'), full_name=full_name, phone=phone, snils=snils, subdivision=subdivision, specialization=specialization, accruals=accruals, holds=holds, payments=payments, info=info)
+
+
+class AddOrgStatus(Enum):
+    INCORRECT_USER = 0
+    ALREADY_LINKED_OTHER_COMPANY = 1
+    OK = 2
+
+
+def parse_org(content: str | bytes) -> AddOrgStatus:
+
+    ENCODING = 'utf-8'  # 'windows-1251'
+
+    data: minidom.Document = minidom.parseString(content)
+
+    for _org in data.getElementsByTagName('Организация'):
+        _org: minidom.Element
+        admin_username = _org.getAttribute('Имя пользователя')
+        admin_password = make_password(_org.getAttribute('Пароль пользователя'))
+
+        inn = _org.getAttribute('ИНН')
+        name = _org.getAttribute('Организация')
+        kpp = _org.getAttribute('КПП')
+        try:
+            admin = CompanyAdmin.objects.get(username=admin_username, password=admin_password)
+            if admin.company:
+                if not inn == admin.company.inn:
+                    return AddOrgStatus.ALREADY_LINKED_OTHER_COMPANY
+            company = Company.objects.get_or_create(inn=inn, name=name, kpp=kpp)
+            admin.company = company
+            admin.save()
+            return AddOrgStatus.OK
+        except Exception:
+            return AddOrgStatus.INCORRECT_USER

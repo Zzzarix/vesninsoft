@@ -17,10 +17,7 @@ class Company(models.Model):
 
 
 class User(AbstractUser):
-    USERNAME_FIELD = 'phone'
-
-    username = None
-    email = None
+    USERNAME_FIELD = 'email'
 
     phone = models.CharField('Телефон', max_length=12, unique=True, null=False)
     password = models.CharField('Пароль', max_length=128, null=False)
@@ -43,6 +40,12 @@ class User(AbstractUser):
         verbose_name = 'Пользователь'
         verbose_name_plural = 'Пользователи'
 
+
+class CompanyAdmin(models.Model):
+    company = models.ForeignKey(Company, related_name='Компания', on_delete=models.CASCADE, null=True)
+
+    username = models.CharField('Имя пользователя', max_length=30, unique=True, null=False)
+    password = models.CharField('Пароль', max_length=128, null=False)
 
 # class Document(models.Model):
 

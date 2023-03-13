@@ -6,7 +6,8 @@ admin.site.register(
         User,
         Company,
         PayslipRegistry,
-        PayslipSheet
+        PayslipSheet,
+        CompanyAdmin
     ]
 )
 
