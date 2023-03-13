@@ -4,10 +4,7 @@ services:
 
   backend:
     build: ./service
-    command: >
-      sh -c "python manage.py makemigrations &&
-             python manage.py migrate &&
-             gunicorn vesninsoft.wsgi:application --bind 0.0.0.0:8000 --workers 3"
+    command: gunicorn vesninsoft.wsgi:application --bind 0.0.0.0:8000 --workers 3
 
     container_name: "backend"
     volumes:
@@ -39,7 +36,7 @@ services:
       - postgres:/var/lib/postgresql/data/
     environment:
       POSTGRES_DB: "vesninDb"
-      POSTGRES_USER: "vesninpg"
+      POSTGRES_USER: "postgres"
       POSTGRES_PASSWORD: "7ZQrXgEgJC"
     ports:
       - "5432:5432"

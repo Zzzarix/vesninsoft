@@ -17,7 +17,10 @@ class Company(models.Model):
 
 
 class User(AbstractUser):
-    USERNAME_FIELD = 'email'
+    USERNAME_FIELD = 'phone'
+
+    email = None
+    username = None
 
     phone = models.CharField('Телефон', max_length=12, unique=True, null=False)
     password = models.CharField('Пароль', max_length=128, null=False)
