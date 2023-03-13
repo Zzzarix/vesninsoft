@@ -2,8 +2,8 @@ from django.shortcuts import render
 from django.http import HttpRequest, HttpResponseRedirect, HttpResponseBadRequest, HttpResponseServerError, HttpResponse, HttpResponseNotFound
 from django.contrib.auth import login as auth_user, logout as auth_logout
 from django.contrib.auth.hashers import make_password
-from .forms import *
-from ..api.backend import *
+from account.forms import *
+from api.backend import *
 
 # Create your views here.
 def account(request: HttpRequest):

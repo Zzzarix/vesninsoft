@@ -3,7 +3,7 @@ from rest_framework.request import Request
 from django.http import HttpResponseRedirect, HttpResponse
 from rest_framework import status
 from django.core.files.uploadedfile import InMemoryUploadedFile
-from .backend import *
+from api.backend import *
 
 import traceback
 
