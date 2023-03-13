@@ -39,7 +39,7 @@ services:
       - postgres:/var/lib/postgresql/data/
     environment:
       POSTGRES_DB: "vesninDb"
-      POSTGRES_USER: "postgres"
+      POSTGRES_USER: "vesninpg"
       POSTGRES_PASSWORD: "7ZQrXgEgJC"
     ports:
       - "5432:5432"

@@ -85,7 +85,7 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'vesninDb',
-        'USER': 'postgres',
+        'USER': 'vesninpg',
         'PASSWORD': '7ZQrXgEgJC',
         'HOST': 'psql',
         'PORT': '5432',
